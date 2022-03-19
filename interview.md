@@ -50,14 +50,68 @@ JDK 동적 프록시에서 InvocationHandler 를 제공했듯이 MethodIntercept
 
 ---
 
-#### Q. pointcut, advice, advisor에 대해 설명  
+#### Q. pointcut, advice, advisor에 대해 설명
+
 왜 생겼나? : 역할과 책임을 명확하게 분리  
 (프록시 버전)
+
 - Pointcut: 부가기능을 '어디에' 적용하고 '어디에' 안하고 판단하는 필터링 로직. 주로 클래스와 메서드 이름으로 필터링. point + cut
 - Advice: 프록시가 호출하는 부가기능, '어떤' 로직
-- Advisor: 1 pointcut + 1 advice, '어디에' '어떤' 로직이 오는지 알고 있다.  
+- Advisor: 1 pointcut + 1 advice, '어디에' '어떤' 로직이 오는지 알고 있다.
 
 (AOP 버전)
+
 - 추가 예정
+
+---
+
+#### Q. AOP 탄생배경
+
+핵심기능과 부가기능을 분리하고 부가기능을 한 곳에서 관리하기 위함이다.  
+관점을 각각의 기능에서 횡단관심사 관점으로 본다. OOP를 대체하기 보다는 보조 목적이다.
+
+---
+
+#### Q. AOP 구현방식 3가지
+
+- 컴파일 시점 (weaving) : AspectJ 제공 컴파일러 필요, 원본로직에 추가됨, 복잡
+- 클래스 로딩 시점: java -javaagent 옵션 사용, 번거롭고 운영 어렵
+- 런타임 시점(프록시): 스프링 채택 방식. 스프링 컨테이너, 프록시, DI, 빈 후처리기 총 동원, 조인 포인트 메서드 실행으로 제한됨
+---
+
+
+#### Q. AOP 사용 주의점
+내부 호출 발생: 내부에서 메서드 호출이 발생하면 프록시를 거치지 않고 대상 객체를 직접 호출하는 문제 발생
+```
+public void external() {
+    log.info("call external");
+    internal();  //내부 메서드 호출(this.internal())
+}
+```
+해결방법  
+1. 자기 자신 주입
+- 생성자 주입은 순환 사이클을 만들어서 실패  
+- 수정자 주입으로 하면 오류 발생 X
+```
+@Autowired
+public void setCallServiceV1(CallServiceV1 callServiceV1) {
+    this.callServiceV1 = callServiceV1;
+}
+
+public void external() {
+    log.info("call external");
+    callServiceV1.internal(); //외부 메서드 호출
+}
+```
+
+2. 지연 조회
+- 앞서 생성자 주입이 실패하는 이유는 자기 자신을 생성하면서 주입해야 하기 때문
+```
+private final ObjectProvider<CallServiceV2> callServiceProvider;
+```
+3. 구조 변경 (권장)
+- 내부 서비스 분리
+
 --- 
-#### Q. 
+
+
