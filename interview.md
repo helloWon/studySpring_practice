@@ -1,5 +1,9 @@
-#### Q. 객체지향개발(Object Oriented Programming)
+#### Q. 스프링이란 무엇?
+좋은 객체지향 어플리케이션을 개발할 수 있도록 도와주는 프레임워크  
+프로그램을 **유연**하고 **변경**에 용이하도록 함
 
+---
+#### Q. 객체지향개발(Object Oriented Programming)
 추상화: 공통의 속성이나 기능을 묶어 이름을 붙이는 것  
 캡슐화: 데이터 구조와 데이터를 다루는 방법들을 결합 시켜 묶는 것  
 상속성: 상위 개념의 특징을 하위 개념이 물려받는 것 부모클라스:자동차라면 자식클라스:슈퍼카  
@@ -12,6 +16,12 @@
 전략 패턴: ApplicationContext. 스프링 의존관계 주입에 사용된다. 불변을 Context에, 변하는 건 Strategy 인터페이스에 넣어서 위임으로 해결
 템플릿 콜백 패턴: JdbcTemplate 등 스프링에서 xxTemplate은 대부분 이 패턴사용. Context가 템플릿, Strategy가 콜백되는 변경사항이다. 전략패턴과 차이는 무조건 1개의 메서드만 가진다.
 
+---
+
+#### Q. 프록시 사용 이유
+- 접근제어(캐싱, 지연로딩, 권한)
+- 부가기능 추가
+- 프록시 체인(또다른 프록시에게 요청)
 ---
 
 #### Q. 리플랙션에 대해 설명
@@ -77,21 +87,27 @@ JDK 동적 프록시에서 InvocationHandler 를 제공했듯이 MethodIntercept
 - 컴파일 시점 (weaving) : AspectJ 제공 컴파일러 필요, 원본로직에 추가됨, 복잡
 - 클래스 로딩 시점: java -javaagent 옵션 사용, 번거롭고 운영 어렵
 - 런타임 시점(프록시): 스프링 채택 방식. 스프링 컨테이너, 프록시, DI, 빈 후처리기 총 동원, 조인 포인트 메서드 실행으로 제한됨
+
 ---
 
-
 #### Q. AOP 사용 주의점
+
 내부 호출 발생: 내부에서 메서드 호출이 발생하면 프록시를 거치지 않고 대상 객체를 직접 호출하는 문제 발생
+
 ```
 public void external() {
     log.info("call external");
     internal();  //내부 메서드 호출(this.internal())
 }
 ```
-해결방법  
+
+해결방법
+
 1. 자기 자신 주입
-- 생성자 주입은 순환 사이클을 만들어서 실패  
+
+- 생성자 주입은 순환 사이클을 만들어서 실패
 - 수정자 주입으로 하면 오류 발생 X
+
 ```
 @Autowired
 public void setCallServiceV1(CallServiceV1 callServiceV1) {
@@ -105,13 +121,23 @@ public void external() {
 ```
 
 2. 지연 조회
+
 - 앞서 생성자 주입이 실패하는 이유는 자기 자신을 생성하면서 주입해야 하기 때문
+
 ```
 private final ObjectProvider<CallServiceV2> callServiceProvider;
 ```
+
 3. 구조 변경 (권장)
+
 - 내부 서비스 분리
 
---- 
+---
 
+#### Q. 스프링 mvc 탄생 배경
+스프링 mvc에서 제공하는 DispatcherServlet과 웹 요청처리 관련 구현체를 사용할 수 있다.   
+스프링 컨테이너, 즉 스프링 IoC를 사용해서 개발할 수 있다.  
+DispatcherServlet이 HandlerMapping을 해주고 View를 강제로 분리시켜주면서 개발자는 핸들러에만 집중 할 수 있게 되었다.
+
+---
 
