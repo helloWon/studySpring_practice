@@ -1,4 +1,4 @@
-package practice.springmvc.web;
+package practice.springmvc.web.springmvc;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import practice.springmvc.domain.member.Member;
 import practice.springmvc.domain.member.MemberRepository;
 
 @Controller
-@RequestMapping("/springmvc/v3/members")
+@RequestMapping("/springmvc/members")
 public class SpringMemberController {
 
     private MemberRepository memberRepository = MemberRepository.getInstance();
