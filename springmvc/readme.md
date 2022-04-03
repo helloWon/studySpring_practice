@@ -21,7 +21,7 @@
 `~/springmvc/web/frontcontroller`  
 `~/springmvc/web/frontcontroller/v4`: front controller 패턴 직접 구현  
 `~/springmvc/web/frontcontroller/v5`: front controller + adapter를 추가하여 여러 controller 한번에 handling 가능
-~/springmvc/web/springmvc: spring mvc로 front controller 패턴 도입 (@Controller)
+`~/springmvc/web/springmvc`: spring mvc로 front controller 패턴 도입 (@Controller)
 
 <br>
 
@@ -49,3 +49,12 @@
 
 `~/aop/exam/annotation`: 사용자 지정 aop가 발동할 annotation  
 `~/aop/exam/aop`: logTrace, retry aop Aspect 구현
+
+# Spring Bean Validation
+
+<br>
+
+## Directory Description
+
+`~/validation/web/form`:
+`~/resources/errors.properties`:
