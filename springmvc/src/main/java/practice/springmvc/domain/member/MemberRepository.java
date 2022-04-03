@@ -1,12 +1,12 @@
 package practice.springmvc.domain.member;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MemberRepository {
-    private static Map<Long, Member> store = new ConcurrentHashMap<>();
+    private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
 
     private static final MemberRepository instance = new MemberRepository();
