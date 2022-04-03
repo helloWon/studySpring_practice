@@ -50,11 +50,13 @@
 `~/aop/exam/annotation`: 사용자 지정 aop가 발동할 annotation  
 `~/aop/exam/aop`: logTrace, retry aop Aspect 구현
 
+<br>
+
 # Spring Bean Validation
 
 <br>
 
 ## Directory Description
 
-`~/validation/web/form`:
-`~/resources/errors.properties`:
+`~/validation/web/form`:  
+`~/resources/errors.properties`: thymeleaf 메세지 처리
