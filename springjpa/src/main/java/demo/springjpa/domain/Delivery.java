@@ -17,15 +17,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Delivery {
-    
-    @Id @GeneratedValue
-    @Column(name = "delivery_id")  // 실제 table column name
+
+    @Id
+    @GeneratedValue
+    @Column(name = "delivery_id") // 실제 table column name
     private Long id;
 
     @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
 
-    @Embedded  // 값 타입애들
+    @Embedded // 값 타입애들
     private Address address;
 
     @Enumerated(EnumType.STRING) // enum 간편하게 설정

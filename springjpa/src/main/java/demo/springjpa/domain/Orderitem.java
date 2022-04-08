@@ -16,12 +16,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Orderitem {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_item_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")  // 외래키로 매핑. != JoinTable
+    @JoinColumn(name = "item_id") // 외래키로 매핑. != JoinTable
     private Item item;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,7 +32,7 @@ public class Orderitem {
     private int orderPrice;
     private int count;
 
-    protected Orderitem(){
+    protected Orderitem() {
 
     }
 }

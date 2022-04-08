@@ -20,9 +20,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
-    
+
     @Id
-    @GeneratedValue  // 자동 생성 전략
+    @GeneratedValue // 자동 생성 전략
     @Column(name = "member_id")
     private Long id;
 
@@ -30,7 +30,7 @@ public class Member {
 
     @Embedded
     private Address address;
-    
+
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 }

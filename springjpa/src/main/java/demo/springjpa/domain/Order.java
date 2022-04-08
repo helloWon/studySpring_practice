@@ -26,9 +26,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "orders") // table 이름 이걸로 하겠다.
-@NoArgsConstructor(access = AccessLevel.PROTECTED)  // 생성자 보호
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 생성자 보호
 public class Order {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_id")
     private Long id;
 
@@ -47,6 +48,5 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-
 
 }
