@@ -18,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+// @NoArgsConstructor(access = AccessLevel.PROTECTED) // FIXME: 아 이거 풀어야 하나 MemberController
 public class Member {
 
     @Id
