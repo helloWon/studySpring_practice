@@ -1,4 +1,4 @@
-package demo.springjpa.entity;
+package demo.springjpa.domain;
 
 import java.util.ArrayList;
 import java.util.List;

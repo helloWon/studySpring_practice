@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
+import demo.springjpa.domain.Member;
+import demo.springjpa.domain.Team;
+
 
 @SpringBootTest
 public class MemberTest {
