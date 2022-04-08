@@ -1,5 +1,5 @@
 package demo.springjpa.domain;
 
-public class DeliveryStatus {
-    
+public enum DeliveryStatus {
+    READY, DONE
 }
