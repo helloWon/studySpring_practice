@@ -45,6 +45,7 @@ public class OrderService {
         order.cancel();
     }
 
+    @Transactional
     public List<Order> findOrders(OrderSearch orderSearch) {
         return orderRepository.findAllByStr(orderSearch);
     }
